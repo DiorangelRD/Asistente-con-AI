@@ -3,7 +3,7 @@
 Una aplicación web ligera y funcional que permite a los usuarios interactuar en tiempo real con la **API de Mistral AI**. La interfaz es moderna, responsiva y visualmente atractiva, con un fondo de gradiente animado y una paleta de colores "Neón Nocturno".
 
 ![Asistente con IA Screenshot](https://github.com/DiorangelRD/Asistente-con-AI/blob/main/screenshot.jpg)
-> **Nota:** Para añadir una captura de pantalla, súbela a tu repositorio y reemplaza `URL_DE_TU_IMAGEN_AQUI` con el enlace a esa imagen.
+
 
 ---
 
