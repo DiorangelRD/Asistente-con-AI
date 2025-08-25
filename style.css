@@ -1,0 +1,249 @@
+:root {
+    /* Paleta de colores "Neón Nocturno" */
+    --sidebar-bg: rgba(10, 10, 20, 0.7);       /* Negro azulado semitransparente */
+    --chat-area-bg: rgba(0, 0, 0, 0.1);        /* El área del chat será más sutil */
+    --input-area-bg: rgba(10, 10, 20, 0.7);    /* Igual que el sidebar */
+    --text-color: #f0f0f0;                    /* Texto blanco/gris claro */
+    --border-color: rgba(255, 255, 255, 0.1);  /* Borde blanco muy sutil */
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --user-msg-bg: #007bff;                    /* Mensajes de usuario en azul primario */
+    --mistral-msg-bg: rgba(44, 46, 56, 0.9);   /* Gris oscuro para la IA */
+    --font-family: 'Roboto', sans-serif;
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-size: 16px;
+    overflow: hidden; /* Evita que el gradiente cause scrollbars */
+}
+
+/* --- Fondo Animado --- */
+.background-gradient {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1; /* Se asegura de que esté detrás de todo */
+    background: linear-gradient(-45deg, #4c00ff, #0073ff, #ff00c8, #00c3ff);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Estructura Principal de la App --- */
+.app-layout {
+    display: flex;
+    height: 100vh;
+    background-color: transparent;
+}
+
+/* --- Barra Lateral --- */
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    backdrop-filter: blur(10px); /* Efecto de cristal esmerilado */
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+.sidebar-header .new-chat-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    background: none;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    color: var(--text-color);
+}
+.new-chat-btn:hover { 
+    background-color: rgba(255, 255, 255, 0.05); 
+    border-style: solid; 
+}
+
+/* --- Historial --- */
+.history-nav { 
+    margin-top: 1.5rem; 
+}
+.history-nav h3 { 
+    font-size: 0.8rem; 
+    text-transform: uppercase; 
+    color: var(--secondary-color); 
+    margin-bottom: 0.5rem; 
+}
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.history-list p { 
+    font-size: 0.9rem; 
+    color: #aaa; 
+}
+.history-item {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.2s;
+    color: var(--text-color);
+}
+.history-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+}
+
+
+/* --- Área de Chat Principal --- */
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--chat-area-bg);
+}
+.chat-header {
+    text-align: center;
+    padding: 2rem 0;
+}
+.chat-header h2, .chat-header p { 
+    color: var(--text-color); 
+}
+.chat-header h2 { 
+    font-size: 1.5rem; 
+    margin-bottom: 0.25rem; 
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 1rem 2rem;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.message-wrapper {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+}
+
+.message-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+.user-icon { background-color: var(--primary-color); }
+.mistral-icon { background-color: var(--secondary-color); }
+
+.message { 
+    padding: 1rem; 
+    border-radius: 8px; 
+    line-height: 1.6; 
+}
+.user-message { 
+    background-color: var(--user-msg-bg); 
+    color: white;
+}
+.mistral-message { 
+    background-color: var(--mistral-msg-bg); 
+    border: 1px solid var(--border-color); 
+}
+
+/* --- Área de Entrada --- */
+.chat-input-area {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--input-area-bg);
+    backdrop-filter: blur(10px);
+}
+#chat-form {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+#user-input {
+    width: 100%;
+    height: 100px;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    resize: none;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--text-color);
+}
+#user-input::placeholder { 
+    color: #aaa; 
+}
+
+.form-buttons { 
+    display: flex; 
+    gap: 0.5rem; 
+    align-self: flex-start; 
+}
+.form-buttons button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 500;
+}
+.btn-primary { 
+    background-color: var(--primary-color); 
+    color: white; 
+}
+.btn-secondary { 
+    background-color: var(--secondary-color); 
+    color: white; 
+}
+.btn-primary:disabled, .btn-secondary:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}

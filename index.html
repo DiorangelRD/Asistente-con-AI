@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente con IA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Barra Lateral -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <button class="new-chat-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Nuevo Chat
+                </button>
+            </div>
+            <nav class="history-nav">
+                <h3>Historial</h3>
+                <div id="history-container" class="history-list">
+                    <p>No hay chats guardados.</p>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal del Chat -->
+        <main class="chat-area">
+            <div class="chat-header">
+                <h2>Asistente con AI 🤖</h2>
+                <p>Pregúntame lo que quieras. ¡Estoy aquí para ayudarte! ✒️</p>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <!-- Los mensajes aparecerán aquí -->
+                <div class="message-wrapper">
+                    <div class="message-icon">IA</div>
+                    <div class="message mistral-message">
+                        <p>Escribiendo...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <form id="chat-form">
+                    <textarea id="user-input" placeholder="Escribe tu consulta..." required></textarea>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/></svg>
+                            Enviar
+                        </button>
+                        <button type="button" id="clear-btn" class="btn-secondary">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg>
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<div class="background-gradient"></div>
+
+    <div class="app-layout">
+        <!-- Barra Lateral -->
+        <aside class="sidebar">
+            <!-- ... (el resto del sidebar no cambia) ... -->
+        </aside>
+        <!-- Contenido Principal del Chat -->
+        <main class="chat-area">
+             <!-- ... (el resto del chat no cambia) ... -->
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
