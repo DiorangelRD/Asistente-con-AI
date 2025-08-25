@@ -11,14 +11,19 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
+    <div class="background-gradient"></div>
+    <div id="overlay" class="overlay"></div> <!-- NUEVO: Overlay para el fondo -->
+
     <div class="app-layout">
         <!-- Barra Lateral -->
-        <aside class="sidebar">
+        <aside id="sidebar" class="sidebar">
             <div class="sidebar-header">
                 <button class="new-chat-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     Nuevo Chat
                 </button>
+                <!-- NUEVO: Botón para cerrar en móvil -->
+                <button id="close-sidebar-btn" class="close-btn">&times;</button>
             </div>
             <nav class="history-nav">
                 <h3>Historial</h3>
@@ -31,20 +36,16 @@
         <!-- Contenido Principal del Chat -->
         <main class="chat-area">
             <div class="chat-header">
+                <!-- NUEVO: Botón de menú hamburguesa para móvil -->
+                <button id="menu-toggle-btn" class="menu-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
                 <h2>Asistente con AI 🤖</h2>
                 <p>Pregúntame lo que quieras. ¡Estoy aquí para ayudarte! ✒️</p>
             </div>
-
-            <div class="chat-messages" id="chat-messages">
-                <!-- Los mensajes aparecerán aquí -->
-                <div class="message-wrapper">
-                    <div class="message-icon">IA</div>
-                    <div class="message mistral-message">
-                        <p>Escribiendo...</p>
-                    </div>
-                </div>
-            </div>
-
+            
+            <!-- El resto del main se queda igual -->
+            <div class="chat-messages" id="chat-messages"></div>
             <div class="chat-input-area">
                 <form id="chat-form">
                     <textarea id="user-input" placeholder="Escribe tu consulta..." required></textarea>
@@ -63,22 +64,24 @@
         </main>
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
-<div class="background-gradient"></div>
+    <!-- Ahora el script.js controlará la visibilidad del sidebar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggleBtn = document.getElementById('menu-toggle-btn');
+            const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+            const overlay = document.getElementById('overlay');
 
-    <div class="app-layout">
-        <!-- Barra Lateral -->
-        <aside class="sidebar">
-            <!-- ... (el resto del sidebar no cambia) ... -->
-        </aside>
-        <!-- Contenido Principal del Chat -->
-        <main class="chat-area">
-             <!-- ... (el resto del chat no cambia) ... -->
-        </main>
-    </div>
+            function toggleSidebar() {
+                sidebar.classList.toggle('visible');
+                overlay.classList.toggle('visible');
+            }
 
-    <script src="script.js"></script>
+            menuToggleBtn.addEventListener('click', toggleSidebar);
+            closeSidebarBtn.addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+        });
+    </script>
+    <script src="script.js"></script> <!-- Tu script principal se mantiene -->
 </body>
 </html>
